@@ -1,18 +1,15 @@
 const express = require("express");
 
 const app = express();
-app.use("/hello", (req, res) => {
-  res.send("hello Hello Hello");
-});
-
-app.use("/test", (req, res) => {
-  res.send("Hello from the express server");
-});
-
-app.use("/", (req, res) => {
-  res.send("data from dashboard");
+app.get("/getUserData", (req, res) => {
+  try {
+    throw new Error("abcdef");
+    res.send("user data sent successfully");
+  } catch (err) {
+    res.status(500).send("Some error. Contact support");
+  }
 });
 
 app.listen(3000, () => {
-  console.log("Server i running on port 3000");
+  console.log("Server is running on port 3000");
 });
